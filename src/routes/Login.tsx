@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import Navbar, { bellowNavbarCSSHeight } from '../components/Navbar';
+import { bellowNavbarCSSHeight } from '../components/Navbar';
 import useUser from '../hooks/useUser';
 
 const loginScheme = yup.object().shape({
@@ -28,43 +28,40 @@ const Login = () => {
       const login = await user.login(values.email, values.password);
       if (!login) setTries(tries + 1);
     }
-  })
+  });
 
-  return <>
-    <Navbar />
-    <div style={{height: bellowNavbarCSSHeight}} className="d-flex justify-content-center align-items-center">
-      <form onSubmit={formik.handleSubmit} style={{minWidth: '400px'}}>
+  return <div style={{height: bellowNavbarCSSHeight}} className="d-flex justify-content-center align-items-center">
+    <form onSubmit={formik.handleSubmit} style={{minWidth: '400px'}}>
 
-        <p className="text-info"><b>Hint: admin@admin.com</b></p>
-        <div className="mb-3">
-          <label htmlFor="exampleInputLogin1" className="form-label">Email</label>
-          <input name="email" type="login" className="form-control" id="exampleInputLogin1" aria-describedby="loginHelp" onChange={formik.handleChange}/>
-        </div>
-        {formik.errors.email && <div className="alert alert-danger" role="alert">
-          {formik.errors.email}
-        </div>}
+      <div className="mb-3">
+        <label htmlFor="exampleInputLogin1" className="form-label">Email</label>
+        <input name="email" type="login" className="form-control" id="exampleInputLogin1" aria-describedby="email" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} />
+      </div>
+      <p className="text-info"><b>Hint: admin@admin.com</b></p>
+      {formik.touched.email && formik.errors.email && <div className="alert alert-danger" role="alert">
+        {formik.errors.email}
+      </div>}
 
-        <p className="text-info"><b>Hint: admin</b></p>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-          <input name="password" type="password" className="form-control" id="exampleInputPassword1" onChange={formik.handleChange}/>
-        </div>
-        {formik.errors.password && <div className="alert alert-danger" role="alert">
-          {formik.errors.password}
-        </div>}
+      <div className="mb-3">
+        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+        <input name="password" type="password" className="form-control" id="exampleInputPassword1" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} />
+      </div>
+      <p className="text-info"><b>Hint: admin</b></p>
+      {formik.touched.password && formik.errors.password && <div className="alert alert-danger" role="alert">
+        {formik.errors.password}
+      </div>}
 
-        <button type="submit" className="mb-3 btn btn-primary" disabled={formik.isSubmitting || !!formik.errors.email || !!formik.errors.password}>
-          {formik.isSubmitting && <>
-            <span className="me-1 spinner-border spinner-border-sm" role="status" aria-hidden="true" />
-            Fake spinner...
-          </>}
-          {!formik.isSubmitting && <>Submit</>}
-        </button>
-        
-        {tries > 0 && <div className="alert alert-danger" role="alert">Failed to login - try again</div>}
-      </form>
-    </div>
-  </>;
+      <button type="submit" className="mb-3 btn btn-primary" disabled={formik.isSubmitting || !!formik.errors.email || !!formik.errors.password}>
+        {formik.isSubmitting && <>
+          <span className="me-1 spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+          Fake spinner...
+        </>}
+        {!formik.isSubmitting && <>Submit</>}
+      </button>
+      
+      {tries > 0 && <div className="alert alert-danger" role="alert">Failed to login - try again</div>}
+    </form>
+  </div>;
 }
 
 export default Login;

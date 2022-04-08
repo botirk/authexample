@@ -1,16 +1,11 @@
 import React from 'react';
 
-import Navbar, { bellowNavbarCSSHeight } from '../components/Navbar';
-import useDataQuery from '../hooks/useDataQuery';
+import { bellowNavbarCSSHeight } from '../components/Navbar';
 
 const C404 = () => {
-  return <>
-    <Navbar />
-    <div style={{height: bellowNavbarCSSHeight}} className="d-flex justify-content-center align-items-center">
-      <h1>404</h1>
-    </div>
-    
-  </>;
+  return <div style={{height: bellowNavbarCSSHeight}} className="d-flex justify-content-center align-items-center">
+    <h1 className="text-danger">404</h1>
+  </div>;
 }
 
 export default C404;
