@@ -25,13 +25,13 @@ export interface State {
 const loadLoginData = () => {
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
-  const expirationStr = localStorage.getItem("expiration");
-  if (!email || !token || !expirationStr) return;
+  const expiration = localStorage.getItem("expiration");
+  if (!email || !token || !expiration) return;
   
-  const expiration = new Date(expirationStr);
-  if (expiration > new Date().withoutOffset()) return;
+  const expirationDate = new Date(expiration);
+  if (expirationDate > new Date().withoutOffset()) return;
 
-  return { email, token, expirationStr };
+  return { email, token, expiration };
 }
 
 const removeLoginData = () => {

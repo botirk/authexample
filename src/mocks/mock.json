@@ -9,7 +9,11 @@
   "contact-data": [
     {
       "id": 1,
-      "phoneNumber": "wsdfsfds"
+      "phoneNumber": "+1(234)56789"
+    },
+    {
+      "id": 2,
+      "phoneNumber": "Hello World"
     }
   ]
 }
