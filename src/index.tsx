@@ -3,16 +3,7 @@ import 'bootstrap/dist/js/bootstrap.esm.min.js';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 
-import Index from './routes/index'
-import { store } from './redux/store';
+import Index from './routes/index';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Index/>
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+ReactDOM.render(<Index/>, document.getElementById('root'));

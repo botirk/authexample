@@ -26,7 +26,9 @@ const Contact = ({contact, isBusy, onUpdate, onDelete, onCreate}: ContactCompone
   const localIsBusy = (isBusy || isSaving || isDeleting);
 
   return <div className='input-group mb-3' ref={tooltips.ref}>
+
     <span className="input-group-text">Phone number</span>
+    
     <input type="text" className="form-control" value={phoneNumber} disabled={localIsBusy} placeholder="Enter phone number here" onChange={(e) => setPhoneNumber(e.currentTarget.value)}/>
     {contact ? <>
 

@@ -22,9 +22,7 @@ const Navbar = () => {
             <Link className="btn btn-outline-success" to="/login">Log-in</Link>
           }
           {isLoggedIn && 
-            <button className="btn btn-outline-danger">
-              <Link to="/logout">Log-out</Link>
-            </button>
+            <Link className="btn btn-outline-danger" to="/logout">Log-out</Link>
           }
         </div>
       </div>
